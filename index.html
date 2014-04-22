@@ -1,87 +1,17 @@
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <title>Hello</title>
         <link rel="stylesheet" type="text/css" href="./index.css">
-        <script src="https://connect.facebook.net/en_US/all.js"></script>
-        <script>    
-              // Additional JS functions here
-              window.fbAsyncInit = function() {
-                FB.init({
-                  appId      : '1405855399688698', // App ID
-                  status     : true, // check login status
-                  cookie     : true, // enable cookies to allow the server to access the session
-                  xfbml      : true  // parse XFBML
-                });
-
-                // Additional init code here
-                FB.getLoginStatus(function(response) {
-                    if (response.status === 'connected') {
-                        // connected
-                        callAPI();
-                    } else if (response.status === 'not_authorized') {
-                        // not_authorized
-                        login();
-                    } else {
-                        // not_logged_in
-                        login();
-                    }
-                });
-            };
-
-            function login() {
-                FB.login(function(response) {
-                    if (response.authResponse) {
-                    // connected
-                        testAPI();
-                    } else {
-                    // cancelled
-                    }
-                });
-            }
-
-            function testAPI() {
-                console.log('Welcome!  Fetching your information.... ');
-                FB.api('/me', function(response) {
-                    console.log('Good to see you, ' + response.name + '.');
-                });
-                fetchFriends();
-            }
-
-            function callAPI() {
-                console.log('Welcome back!  Fetching your information... ');
-                FB.api('/me', function(response) {
-                    console.log('Good to see you, ' + response.name + '.');
-                });
-               fetchFriends();
-            }
-
-            function fetchFriends() {
-              FB.api('/me/friends?fields=name,first_name,picture', function(response) {
-                    
-                    var friends_div = document.getElementById("friends_list");
-                    var ul_obj = document.createElement("ul");
-                    friends_div.appendChild(document.createTextNode("All Friends"));
-                    response.data.forEach(function  (friend) {
-                      var img_obj = document.createElement("img");
-                      img_obj.setAttribute('src', friend.picture.data.url);
-                      var li_obj = document.createElement("li");
-                      var name = document.createTextNode(friend.name);
-                      li_obj.appendChild(img_obj);
-                      li_obj.appendChild(name);
-                      ul_obj.appendChild(li_obj);
-                    });
-                    friends_div.appendChild(ul_obj);
-                });               
-            }
-
-            </script>
+        <script src="https://connect.facebook.net/de_DE/all.js"></script>
+        <script src="./facebookIntegration.js"></script>
     </head>
     <body>
-        <div id="fb-root"></div>    
+        <div id="fb-root"></div>
         <div id="header">Sample Integration with Facebook</div>
+        <button onclick="appPromotion()">Like this app</button>
         <div id="friends_list"></div>
+
     </body>
 </html>
