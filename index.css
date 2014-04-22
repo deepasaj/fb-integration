@@ -1,0 +1,16 @@
+#header {
+	background-color: black;
+	height: 50px;
+	color: white;
+	font-family: Georgia, serif;
+	font-size: 150%;
+	text-align: center;
+	padding-top: 2%;
+}
+
+li {
+	display: block; 
+	float: left;
+	width: 250px;
+	height: 100px;
+}
